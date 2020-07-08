@@ -1,6 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings for Neovim.
-" Last updated on 2020. 03. 31.
+" Last updated on 2020. 07. 08.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -47,7 +47,6 @@ if s:IS_VIMPLUG_INSTALLED()
     call plug#begin(s:plugin_root)
         " --> UI
         Plug 'ctrlpvim/ctrlp.vim'
-        Plug 'dracula/vim', { 'as': 'dracula' }
         Plug 'majutsushi/tagbar'
         Plug 'scrooloose/nerdtree'
         Plug 'vim-airline/vim-airline'
@@ -100,6 +99,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => UI
 let g:colors_name='default'
+let &background='dark'
 
 if stridx($TERM, '256color') > -1
     let &termguicolors=1
@@ -155,8 +155,8 @@ if s:IS_PLUGIN_INSTALLED('vim-airline') && s:IS_PLUGIN_LOADED('vim-airline')
     let g:airline_powerline_fonts=0
 
     if s:IS_PLUGIN_INSTALLED('vim-airline-themes') && s:IS_PLUGIN_LOADED('vim-airline-themes')
-        if g:colors_name == 'dracula'
-            let g:airline_theme='dracula'
+        if (&background == 'dark') || (&background == 'light')
+            let g:airline_theme=&background
         endif
     endif
 endif
